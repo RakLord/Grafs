@@ -1,90 +1,76 @@
+// import { Game } from "./game.js";
+import { drawGraph } from "./graph.js";
+// import { saveGame } from "./saving.js";
+
+/*
+yDisplay.html('<p>ΔY: ' + window.deltaY + '</p>');
+*/
+
+let game;
+let canvas;
+let ctx;
+
 $(document).ready(function() {
 
     const pointsDisplay = $('#points-display');
-    
-    window.formulaSinDivider = 40
-    window.formulaSinMultiplier = 100
-    window.formulaConstantOffset = 1
 
-    // Declare an array to store the upgrades data
-    window.upgradesData = [];
-    window.upgradesOwned = [];
-    window.upgradesInShop = []
+    canvas = document.getElementById('graph-canvas');
+    ctx = canvas.getContext('2d');
+
+    // Make sure the canvas fills its container
+    canvas.width = $('#right-container').width();
+    canvas.height = $('#right-container').height();
+    
+    let yDisplay = $("#y-display");
+
+    game = newGame();
 
     function updateConstants() {
         $('#constant-items').html(`
-            <p>Divider: ${window.formulaSinDivider}</p>
-            <p>Multiplier: ${window.formulaSinMultiplier}</p>
-            <p>Offset: ${window.formulaConstantOffset}</p>
+            <p>Divider: ${game.formulaSinDivider}</p>
+            <p>Multiplier: ${game.formulaSinMultiplier}</p>
+            <p>Offset: ${game.formulaConstantOffset}</p>
         `);
     }
 
-    // Default graph formula
-    window.graphFormula = function(x, gameFrame) {
-        return (Math.sin((x + gameFrame) / window.formulaSinDivider) * window.formulaSinMultiplier) + window.formulaConstantOffset;
-    }
-
-
-
-    window.points = points = 0;
-    
-    // Define gameFrame
-    let gameFrame = 0;
-
-    // Define FPS limit and frame count
-    const fpsLimit = 30;  // Set your desired FPS limit
-    let frameCount = 0;
-
-    // Define tick function
     function tick() {
-        // Increment frame count
-        frameCount++;
-
+        game.frameCount++;
         // Redraw the graph every n frames
-        if (frameCount >= 60 / fpsLimit) {
-            // Increment gameFrame
-            gameFrame++;
-            $('#frame-display').html(`Frame: ${gameFrame}`);
-            drawGraph(gameFrame);
-            window.points += window.deltaY;
-            frameCount = 0;
+        if (game.frameCount >= 60 / game.fpsLimit) {
+            game.gameFrame++;
+            $('#frame-display').html(`Frame: ${game.gameFrame}`);
+            let deltaY = drawGraph(ctx, canvas, game);
+            game.points += deltaY;
+            game.frameCount = 0;
         }
 
         checkUpgrades();
         updateConstants();
-        pointsDisplay.html('<p>' + Math.round(window.points) + '</p>');
+        pointsDisplay.html('<p>' + Math.round(game.points) + '</p>');
         
-
-        // Request the next frame
         requestAnimationFrame(tick);
     }
 
-    // Start the game loop
+    // Start game loop
     tick();
 });
 
 
 $(window).on("resize", function() {
-    window.graphCanvas.width = $('#right-container').width();
-    window.graphCanvas.height = $('#right-container').height();
-
-    // Redraw the graph after resizing
-    drawGraph(gameFrame);
+    canvas.width = $('#right-container').width();
+    canvas.height = $('#right-container').height();
 });
 
-// Load the upgrades data into memory
-$.getJSON('upgrades.json', function(data) {
-    window.upgradesData = data;
-});
+
 
 // Function to check for upgrade conditions
 function checkUpgrades() {
     // Loop through the upgrades data
-    for (let i = 0; i < window.upgradesData.length; i--) {
-        let upgrade = window.upgradesData[i];
+    for (let i = 0; i < game.upgradesData.length; i--) {
+        let upgrade = game.upgradesData[i];
         
         // Check if the condition for this upgrade is met
-        if (window.points >= upgrade.price && !window.upgradesInShop.includes(upgrade.name)) {
+        if (game.points >= upgrade.price && !game.upgradesInShop.includes(upgrade.name)) {
             // Add this upgrade to the #upgrades div
             $('#upgrades').append(`
                 <div class="upgrade">
@@ -96,8 +82,8 @@ function checkUpgrades() {
                 </div>
             `);
             console.log(upgrade)
-            window.upgradesInShop.append(upgrade);
-            window.upgradesData.splice(i, 1);
+            game.upgradesInShop.append(upgrade);
+            game.upgradesData.splice(i, 1);
         }
     }
 }
@@ -112,7 +98,7 @@ $('#upgrades').on('click', '.buy-button', function() {
     let upgrade = upgradesData.find(upg => upg.name === upgradeName);
     
     // Check if player has enough points
-    if (window.points >= upgrade.price) {
+    if (points >= upgrade.price) {
         // Subtract the price from the points
         points -= upgrade.price;
         
