@@ -52,7 +52,7 @@ $(document).ready(function() {
 
         checkUpgrades();
         updateConstants();
-        pointsDisplay.html('<p>Points: ' + window.points + '</p>');
+        pointsDisplay.html('<p>' + Math.round(window.points) + '</p>');
         
 
         // Request the next frame
