@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Upgrade 1",
+        "formula": "y = sin(x+frame / sinDiv) * sinMulti",
+        "price": 1000,
+        "level": 1,
+        "description": "This upgrade will modify the graph in a way..."
+    },
+    {
+        "name": "Upgrade 2",
+        "formula": "y = sin(x / 2)",
+        "price": 2000,
+        "level": 2,
+        "description": "This upgrade will modify the graph in a different way..."
+    }
+]
