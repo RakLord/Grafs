@@ -6,7 +6,7 @@ class Game {
 
         this.formulaSinDivider = 40
         this.formulaSinMultiplier = 100
-        this.formulaConstantOffset = 0.01
+        this.formulaConstantOffset = 0.1
 
         this.upgradesData = [];
         this.upgradesOwned = [];

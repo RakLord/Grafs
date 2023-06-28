@@ -67,21 +67,15 @@ $(window).on("resize", function() {
 // Add click event handler for the buy buttons
 $('#upgrades').on('click', '.buy-button', function() {
     let upgradeName = $(this).data('upgrade');
-    
-    // Find the upgrade data
-    let upgrade = game.upgradesData.find(upg => upg.name === upgradeName);
-    
+    let upgrade = game.upgradesInShop.find(upg => upg.name === upgradeName);
+
     // Check if player has enough points
     if (game.points >= upgrade.price) {
-        // Subtract the price from the points
         game.points -= upgrade.price;
-        
-        // Remove the upgrade from the #upgrades div
         $(this).parent().remove();
-        
         // Add the upgrade to the upgradesOwned list
         game.upgradesOwned.push(upgrade.name);
+        console.log("Upgrade Bought: ", upgradeName);
         
-        // Add upgrade logic here (modify the graph)
     }
 });
