@@ -32,6 +32,7 @@ body {
     align-items: center;
     width: 20%;
     border-right: solid white 1px;
+    padding-left: 1px; 
 }
 
 #left-container > * {
@@ -58,27 +59,28 @@ body {
     font-size: 0.8em;
 }
 
-#points-display-container {
+#data-display {
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.data-container {
     display: flex;
     flex-direction: row;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    margin-bottom: 10px;
-
+}
+.data-container > *:last-child {
+    padding-bottom: 10px;
 }
 
-#points-display{
+
+.data-container>.right-snap{
     margin-left: auto;
 }
 
-#y-display {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.8em;
-}
 
 #graph-canvas {
     width: 100%;

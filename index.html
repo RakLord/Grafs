@@ -8,21 +8,25 @@
 <body>
     <div id="main-container">
         <div id="frame-display"></div>
-        <div id="y-display">Y: 0</div>
 
         <div id="left-container">
-            
             <div id="data-display">
-                <div id="points-display-container">
+                <div id="points-display-container" class="data-container">
                     <div><p>Points:</p></div>
-                    <div id="points-display"></div>
+                    <div id="points-display" class="right-snap"></div>
                 </div>
 
-                <div id="constants">
-                    <h2>Constants</h2>
-                    <hr />
-                    <div id="constant-items"></div>
+                <div id="deltaY-display-container" class="data-container">
+                    <div><p>ΔY:</p></div>
+                    <div id="y-display" class="right-snap"></div>
                 </div>
+
+
+            </div>
+            <div id="constants">
+                <h2>Constants</h2>
+                <hr />
+                <div id="constant-items"></div>
             </div>
             <!-- Placeholders for upgrades and formulas -->
             <div id="upgrades"></div>
@@ -36,6 +40,7 @@
     <script src="scripts/jquery-3.7.0.min.js"></script>
     
     <script src="scripts/saving.js"></script>
+    <script src="scripts/upgradeLogic.js"></script>
     <script src="scripts/game.js"></script>
     <script src="scripts/main.js" type="module"></script>
     

@@ -4,7 +4,7 @@ export function checkUpgrades(game) {
     for (let i = upgradeDataLength - 1; i >= 0; i--) {
         let upgrade = game.upgradesData[i];
         // Check if the condition for this upgrade is met
-        if (game.points >= upgrade.price) {
+        if (game.points >= upgrade.price * 0.75) {
             // Add this upgrade to the #upgrades div
             $('#upgrades').append(`
                 <div class="upgrade">

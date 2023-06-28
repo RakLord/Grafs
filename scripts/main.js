@@ -42,7 +42,7 @@ $(document).ready(function() {
 
             deltaY = drawGraph(ctx, canvas, game);
 
-            yDisplay.html('<p>ΔY: ' + deltaY.toFixed(2) + '</p>');
+            yDisplay.html('<p>' + deltaY.toFixed(2) + '</p>');
             pointsDisplay.html('<p>' + game.points.toFixed(2) + '</p>');
 
             checkUpgrades(game);
@@ -67,15 +67,21 @@ $(window).on("resize", function() {
 // Add click event handler for the buy buttons
 $('#upgrades').on('click', '.buy-button', function() {
     let upgradeName = $(this).data('upgrade');
-    let upgrade = game.upgradesInShop.find(upg => upg.name === upgradeName);
+    let upgradeIndex = game.upgradesInShop.findIndex(upg => upg.name === upgradeName);
 
-    // Check if player has enough points
-    if (game.points >= upgrade.price) {
-        game.points -= upgrade.price;
-        $(this).parent().remove();
-        // Add the upgrade to the upgradesOwned list
-        game.upgradesOwned.push(upgrade.name);
-        console.log("Upgrade Bought: ", upgradeName);
-        
+    // Check if the upgrade was found in the array
+    if (upgradeIndex !== -1) {
+        let upgrade = game.upgradesInShop[upgradeIndex];
+        // Check if player has enough points
+        if (game.points >= upgrade.price) {
+            game.points -= upgrade.price;
+            $(this).parent().remove();
+            // Add the upgrade to the upgradesOwned list
+            game.upgradesOwned.push(upgrade);
+            console.log("Upgrade Bought: ", upgradeName);
+            // Remove the upgrade from the upgradesInShop array
+            game.upgradesInShop.splice(upgradeIndex, 1);
+            upgradeUpdate(game);
+        }
     }
 });
