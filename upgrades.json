@@ -4,20 +4,31 @@
         "formula": "Constant Offset * 2",
         "price": 20,
         "level": 1,
-        "description": "Doubles Offset (starts from higher on y)"
+        "description": "Doubles Offset (starts from higher on y)",
+        "processed": false
     },
     {
         "name": "Offset Increase 2",
         "formula": "Constant Offset * 2",
         "price": 80,
         "level": 2,
-        "description": "Doubles Offset (starts from higher on y)"
+        "description": "Doubles Offset!",
+        "processed": false
     },
     {
-        "name": "Offset Increase 3\nFinal",
-        "formula": "Constant Offset * 2",
+        "name": "Offset Increase 3 (MAX)",
+        "formula": "Constant Offset * 10",
         "price": 200,
         "level": 3,
-        "description": "Doubles Offset (starts from higher on y)"
+        "description": "10x Offset!!!",
+        "processed": false
+    },
+    {
+        "name": "Increase Sin Multiplier 1",
+        "formula": "Multi * 1.2",
+        "price": 500,
+        "level": 1,
+        "description": "Increase sin divider multiplier",
+        "processed": false
     }
 ]
