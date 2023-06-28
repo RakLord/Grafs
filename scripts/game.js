@@ -4,13 +4,15 @@ class Game {
     
         this.points = 0;
 
-        this.formulaSinDivider = 40
+        this.formulaSinDivider = 8
         this.formulaSinMultiplier = 100
-        this.formulaConstantOffset = 0.1
+        this.formulaConstantOffset = 0.01
 
         this.upgradesData = [];
         this.upgradesOwned = [];
         this.upgradesInShop = [];
+
+        this.graphFormula;
 
         this.graphFormula = function(x) {
             return (Math.sin((x + this.gameFrame) / this.formulaSinDivider) * this.formulaSinMultiplier) + this.formulaConstantOffset;
