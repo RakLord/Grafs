@@ -6,7 +6,7 @@ class Game {
 
         this.formulaSinDivider = 40
         this.formulaSinMultiplier = 100
-        this.formulaConstantOffset = 1
+        this.formulaConstantOffset = 0.01
 
         this.upgradesData = [];
         this.upgradesOwned = [];
@@ -20,8 +20,19 @@ class Game {
         this.gameFrame = 0;
         this.frameCount = 0;
 
-        $.getJSON('upgrades.json', function(data) {
+        const loadJSON = new Promise((resolve, reject) => {
+            $.getJSON('upgrades.json', (data) => {
+                resolve(data);
+            }).fail((error) => {
+                reject(error);
+            });
+        });
+
+        loadJSON.then((data) => {
             this.upgradesData = data;
+            // Continue with the program logic here
+        }).catch((error) => {
+            // Handle error loading JSON
         });
     }
 }

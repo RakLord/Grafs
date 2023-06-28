@@ -1,16 +1,23 @@
 [
     {
-        "name": "Upgrade 1",
-        "formula": "y = sin(x+frame / sinDiv) * sinMulti",
-        "price": 1000,
+        "name": "Offset Increase 1",
+        "formula": "Constant Offset * 2",
+        "price": 20,
         "level": 1,
-        "description": "This upgrade will modify the graph in a way..."
+        "description": "Doubles Offset (starts from higher on y)"
     },
     {
-        "name": "Upgrade 2",
-        "formula": "y = sin(x / 2)",
-        "price": 2000,
+        "name": "Offset Increase 2",
+        "formula": "Constant Offset * 2",
+        "price": 80,
         "level": 2,
-        "description": "This upgrade will modify the graph in a different way..."
+        "description": "Doubles Offset (starts from higher on y)"
+    },
+    {
+        "name": "Offset Increase 3\nFinal",
+        "formula": "Constant Offset * 2",
+        "price": 200,
+        "level": 3,
+        "description": "Doubles Offset (starts from higher on y)"
     }
 ]

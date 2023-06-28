@@ -1,9 +1,7 @@
-// import { Game } from "./game.js";
 import { drawGraph } from "./graph.js";
-// import { saveGame } from "./saving.js";
-
+import { checkUpgrades } from "./utils.js";
 /*
-yDisplay.html('<p>ΔY: ' + window.deltaY + '</p>');
+
 */
 
 let game;
@@ -34,23 +32,27 @@ $(document).ready(function() {
     }
 
     function tick() {
+        let deltaY = 0;
         game.frameCount++;
-        // Redraw the graph every n frames
+        // Runs every 60 frames
         if (game.frameCount >= 60 / game.fpsLimit) {
             game.gameFrame++;
-            $('#frame-display').html(`Frame: ${game.gameFrame}`);
-            let deltaY = drawGraph(ctx, canvas, game);
-            game.points += deltaY;
-            game.frameCount = 0;
-        }
 
-        checkUpgrades();
-        updateConstants();
-        pointsDisplay.html('<p>' + Math.round(game.points) + '</p>');
-        
+            $('#frame-display').html(`Frame: ${game.gameFrame}`);
+
+            deltaY = drawGraph(ctx, canvas, game);
+
+            yDisplay.html('<p>ΔY: ' + deltaY.toFixed(2) + '</p>');
+            pointsDisplay.html('<p>' + game.points.toFixed(2) + '</p>');
+
+            checkUpgrades(game);
+            updateConstants();
+
+            game.frameCount = 0;
+        }        
+        game.points += deltaY;
         requestAnimationFrame(tick);
     }
-
     // Start game loop
     tick();
 });
@@ -62,36 +64,9 @@ $(window).on("resize", function() {
 });
 
 
-
-// Function to check for upgrade conditions
-function checkUpgrades() {
-    // Loop through the upgrades data
-    for (let i = 0; i < game.upgradesData.length; i--) {
-        let upgrade = game.upgradesData[i];
-        
-        // Check if the condition for this upgrade is met
-        if (game.points >= upgrade.price && !game.upgradesInShop.includes(upgrade.name)) {
-            // Add this upgrade to the #upgrades div
-            $('#upgrades').append(`
-                <div class="upgrade">
-                    <h2>${upgrade.name}</h2>
-                    <p>${upgrade.description}</p>
-                    <p>Price: ${upgrade.price}</p>
-                    <p>Formula: ${upgrade.formula}</p>
-                    <button class="buy-button" data-upgrade="${upgrade.name}">Buy</button>
-                </div>
-            `);
-            console.log(upgrade)
-            game.upgradesInShop.append(upgrade);
-            game.upgradesData.splice(i, 1);
-        }
-    }
-}
-
-// Call checkUpgrades in the tick function or wherever you update the points
-
 // Add click event handler for the buy buttons
 $('#upgrades').on('click', '.buy-button', function() {
+    console.log("Clicked" + $(this));
     let upgradeName = $(this).data('upgrade');
     
     // Find the upgrade data
