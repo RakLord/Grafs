@@ -25,7 +25,7 @@ const upgradesEffects = {
     },
     "Translate Wave 1": (game, upgrade) => {
         if (!upgrade.processed) {
-            game.formulaConstantOffset += game.formulaSinMultiplier * 0.6;
+            game.formulaConstantOffset += game.formulaSinMultiplier * 0.8;
             upgrade.processed = true;
         }
     },

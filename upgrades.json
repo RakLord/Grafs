@@ -18,7 +18,7 @@
     {
         "name": "Offset Increase 3 (MAX)",
         "formula": "Constant Offset * 10",
-        "price": 500,
+        "price": 400,
         "level": 3,
         "description": "10x Offset!!!",
         "processed": false
@@ -26,7 +26,7 @@
     {
         "name": "Increase Sin Multiplier 1",
         "formula": "Multi * 1.2",
-        "price": 10000,
+        "price": 5000,
         "level": 1,
         "description": "Increase sin divider multiplier",
         "processed": false
@@ -34,7 +34,7 @@
     {
         "name": "Translate Wave 1", 
         "formula": "Offset = Offset + Sin Multi / 2",
-        "price": 15000,
+        "price": 10000,
         "level": 1,
         "description": "Moves the graph UP!",
         "processed": false
