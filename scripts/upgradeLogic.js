@@ -25,7 +25,7 @@ const upgradesEffects = {
     },
     "Translate Wave 1": (game, upgrade) => {
         if (!upgrade.processed) {
-            game.formulaConstantOffset += game.formulaSinMultiplier * 0.8;
+            game.formulaConstantOffset += game.formulaSinMultiplier * 0.2;
             upgrade.processed = true;
         }
     },
@@ -42,6 +42,19 @@ const upgradesEffects = {
         }
     },
     "Decreased Frequency 3": (game, upgrade) => {
+        if (!upgrade.processed) {
+            game.formulaSinDivider *= 1.5;
+            upgrade.processed = true;
+        }
+    },
+    "Decreased Frequency 4": (game, upgrade) => {
+        if (!upgrade.processed) {
+            game.formulaSinDivider *= 1.5;
+            upgrade.processed = true;
+        }
+    }
+    ,
+    "Decreased Frequency 5": (game, upgrade) => {
         if (!upgrade.processed) {
             game.formulaSinDivider *= 1.5;
             upgrade.processed = true;

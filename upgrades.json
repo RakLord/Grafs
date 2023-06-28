@@ -28,7 +28,7 @@
         "formula": "Multi * 1.2",
         "price": 5000,
         "level": 1,
-        "description": "Increase sin divider multiplier",
+        "description": "Increase sin divider multiplier (Max ΔY Capacity)",
         "processed": false
     },
     {
@@ -44,7 +44,7 @@
         "formula": "Freq = FreqDivider * 1.5",
         "price": 20000,
         "level": 1,
-        "description": "Moves the graph UP!",
+        "description": "Decreases Frequency",
         "processed": false
     },
     {
@@ -52,7 +52,7 @@
         "formula": "Freq = FreqDivider * 1.5",
         "price": 50000,
         "level": 2,
-        "description": "Moves the graph UP!",
+        "description": "Decreases Frequency",
         "processed": false
     },
     {
@@ -60,7 +60,23 @@
         "formula": "Freq = FreqDivider * 1.5",
         "price": 100000,
         "level": 3,
-        "description": "Moves the graph UP!",
+        "description": "Decreases Frequency",
+        "processed": false
+    },
+    {
+        "name": "Decreased Frequency 4", 
+        "formula": "Freq = FreqDivider * 1.5",
+        "price": 200000,
+        "level": 3,
+        "description": "Decreases Frequency",
+        "processed": false
+    },
+    {
+        "name": "Decreased Frequency 5", 
+        "formula": "Freq = FreqDivider * 1.5",
+        "price": 500000,
+        "level": 3,
+        "description": "Decreases Frequency",
         "processed": false
     }
 ]
